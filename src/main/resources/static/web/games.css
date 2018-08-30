@@ -1,0 +1,51 @@
+.background {
+    background-color: #FF715B;
+    height: 100px;
+    width: 100%;
+ }
+ .tittle {
+    font-size: 25px;
+    padding-top: 25px;
+    font-style: italic;
+ }
+ .sec {
+    margin-top: 35px;
+ }
+ .listOne {
+    margin: 10px 0;
+ }
+ input {
+    display: block;
+    padding: 10px;
+    font-size: 20px;
+    margin: 15px 0;
+ }
+ #btn {
+    background-color: #FF715B;
+    cursor: pointer;
+    border-radius: 15px;
+ }
+ #btn-logout {
+     background-color: #FF715B;
+     cursor: pointer;
+     border-radius: 15px;
+}
+#btn-sign-up {
+    background-color: #FCCD2E;
+    cursor: pointer;
+    border-radius: 15px;
+}
+.spanColor {
+    color: red;
+}
+.hide {
+    display: none;
+}
+.join-btn {
+    background-color: #040300;
+    cursor: pointer;
+    border-radius: 15px;
+    color: white;
+}
+
+

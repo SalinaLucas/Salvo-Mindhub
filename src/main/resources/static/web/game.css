@@ -1,0 +1,38 @@
+span {
+    font-style: italic;
+    font-size: 23px;
+    color: white;
+
+}
+body {
+    background-size: cover;
+    background-image: url("imagenes css/fondo3.jpg");
+
+    background-position: center;
+    background-repeat: no-repeat;
+}
+table.table-bordered > thead > tr > th {
+      border: 2px solid white;
+}
+table.table-bordered > tbody > tr > td {
+      border: 2px solid white;
+}
+.heading {
+     color: white;
+}
+#tdw {
+    font-weight: bold;
+}
+.shipColor {
+    background-color: blue;
+}
+.salvoColor {
+    background-color: red;
+}
+#btn-logout {
+     background-color: #FF715B;
+     cursor: pointer;
+     border-radius: 15px;
+     float: right;
+     padding: 5px ;
+}
