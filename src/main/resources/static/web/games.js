@@ -92,15 +92,41 @@ $("#btn-logout").click(function(){
         })
 })
 
+//Create game
+$("#btn-create").click(function(){
+     $.post("/api/games")
+            .done(function(data) {
+                   window.location.replace('/web/game.html?gp='+data.ok.gpid);
+            })
+            .fail(function() {
+                  $("#msg").html("Incorrect user").addClass("spanColor");
+            })
+})
+
+//Join game
+$("#app").on("click", ".join-btn", function() {
+     $.post("/api/game/"+$(this).attr('data-game')+"/players")
+         .done(function(data) {
+             window.location.replace('/web/game.html?gp='+data.ok.gpid);
+         })
+         .fail(function() {
+             $("#msg").html("error in process").addClass("spanColor");
+         })
+})
+
 //Ocultar Log in o Log out
 function change() {
     if (app.player == 'GUEST') {
         $('#logForm').removeClass('hide');
         $('#btn-logout').addClass('hide');
+        $('#btn-create').addClass('hide');
+
 
     } else {
         $('#btn-logout').removeClass('hide');
         $('#logForm').addClass('hide');
+        $('#btn-create').removeClass('hide');
+
     }
 }
 

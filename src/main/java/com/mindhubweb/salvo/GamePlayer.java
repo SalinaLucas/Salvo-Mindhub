@@ -47,6 +47,17 @@ public class GamePlayer {
         //this.player2 = player2;
     }
 
+    public GamePlayer(Game game, Player player) /*Player player2)*/ {
+        this.game = game;
+        this.player = player;
+    }
+
+    public GamePlayer(Game game, Player player, Set<Ship> ships) /*Player player2)*/ {
+        this.game = game;
+        this.player = player;
+        this.addShips(ships);
+    }
+
     public long getId() {
         return id;
     }

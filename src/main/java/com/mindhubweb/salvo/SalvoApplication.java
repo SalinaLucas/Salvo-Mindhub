@@ -92,42 +92,42 @@ public class SalvoApplication {
 			setOne.add(new Ship("battleship", new ArrayList<>(Arrays.asList("A2", "A3", "A4", "A5"))));
 			setOne.add(new Ship("submarine", new ArrayList<>(Arrays.asList("E1", "F1", "G1"))));
 			setOne.add(new Ship("destroyer", new ArrayList<>(Arrays.asList("B5", "C5", "D5"))));
-			setOne.add(new Ship("patrolBoat", new ArrayList<>(Arrays.asList("J1", "J2"))));
+			setOne.add(new Ship("patrol", new ArrayList<>(Arrays.asList("J1", "J2"))));
 
 			Set<Ship> setTwo = new HashSet<>();
 			setTwo.add(new Ship("carrier", new ArrayList<>(Arrays.asList("A2", "A3", "A4", "A5", "A6"))));
 			setTwo.add(new Ship("battleship", new ArrayList<>(Arrays.asList("H1", "H2", "H3", "H4"))));
 			setTwo.add(new Ship("submarine", new ArrayList<>(Arrays.asList("E5", "F5", "G5"))));
 			setTwo.add(new Ship("destroyer", new ArrayList<>(Arrays.asList("B9", "C9", "D9"))));
-			setTwo.add(new Ship("patrolBoat", new ArrayList<>(Arrays.asList("G1", "G2"))));
+			setTwo.add(new Ship("patrol", new ArrayList<>(Arrays.asList("G1", "G2"))));
 
 			Set<Ship> setThree = new HashSet<>();
 			setThree.add(new Ship("carrier", new ArrayList<>(Arrays.asList("C2", "D2", "E2", "F2", "G2"))));
 			setThree.add(new Ship("battleship", new ArrayList<>(Arrays.asList("I5", "I6", "I7", "I8"))));
 			setThree.add(new Ship("submarine", new ArrayList<>(Arrays.asList("E1", "F1", "G1"))));
 			setThree.add(new Ship("destroyer", new ArrayList<>(Arrays.asList("B7", "B8", "B9"))));
-			setThree.add(new Ship("patrolBoat", new ArrayList<>(Arrays.asList("G1", "H1"))));
+			setThree.add(new Ship("patrol", new ArrayList<>(Arrays.asList("G1", "H1"))));
 
 			Set<Ship> setFour = new HashSet<>();
 			setFour.add(new Ship("carrier", new ArrayList<>(Arrays.asList("J2", "J3", "J4", "J5", "J6"))));
 			setFour.add(new Ship("battleship", new ArrayList<>(Arrays.asList("H1", "H2", "H3", "H4"))));
 			setFour.add(new Ship("submarine", new ArrayList<>(Arrays.asList("C5", "C6", "C7"))));
 			setFour.add(new Ship("destroyer", new ArrayList<>(Arrays.asList("B9", "C9", "D9"))));
-			setFour.add(new Ship("patrolBoat", new ArrayList<>(Arrays.asList("E5", "E6"))));
+			setFour.add(new Ship("patrol", new ArrayList<>(Arrays.asList("E5", "E6"))));
 
 			Set<Ship> setFive = new HashSet<>();
 			setFive.add(new Ship("carrier", new ArrayList<>(Arrays.asList("A2", "B2", "C2", "D2", "E2"))));
 			setFive.add(new Ship("battleship", new ArrayList<>(Arrays.asList("J6", "J7", "J8", "J9"))));
 			setFive.add(new Ship("submarine", new ArrayList<>(Arrays.asList("H3", "H4", "H5"))));
 			setFive.add(new Ship("destroyer", new ArrayList<>(Arrays.asList("B10", "C10", "D10"))));
-			setFive.add(new Ship("patrolBoat", new ArrayList<>(Arrays.asList("E8", "G8"))));
+			setFive.add(new Ship("patrol", new ArrayList<>(Arrays.asList("E8", "G8"))));
 
 			Set<Ship> setSix = new HashSet<>();
 			setSix.add(new Ship("carrier", new ArrayList<>(Arrays.asList("D1", "D2", "D3", "D4", "D5"))));
 			setSix.add(new Ship("battleship", new ArrayList<>(Arrays.asList("G1", "H1", "I1", "J1"))));
 			setSix.add(new Ship("submarine", new ArrayList<>(Arrays.asList("E6", "F6", "G6"))));
 			setSix.add(new Ship("destroyer", new ArrayList<>(Arrays.asList("B10", "C10", "D10"))));
-			setSix.add(new Ship("patrolBoat", new ArrayList<>(Arrays.asList("G1", "G2"))));
+			setSix.add(new Ship("patrol", new ArrayList<>(Arrays.asList("G1", "G2"))));
 
 			Set<Salvo> set1 = new HashSet<>();
 			set1.add(new Salvo(new ArrayList<>(Arrays.asList("H2", "H3", "H4", "H5", "H6")) , 1));

@@ -1,0 +1,26 @@
+.grid-stack-item-content {
+    opacity: 0.9;
+    background-size: 100%;
+    background-repeat: no-repeat;
+    cursor: -webkit-grab;
+    cursor: -moz-grab;
+}
+
+.carrierHorizontal{
+    background-image: url('submarinehor.png');
+}
+
+.patroalHorizontal{
+    background-image: url('patrolboathor.png');
+}
+
+.grid-ships{
+    padding-top: 45px;
+    padding-left: 45px;
+    height: 495px;
+    width: 495px;
+    background-image: url('backgroundTable.png');
+    background-size: cover;
+    margin-left: 10px;
+    margin-top: 28px;
+}

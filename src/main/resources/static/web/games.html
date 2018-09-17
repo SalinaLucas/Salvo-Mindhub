@@ -22,7 +22,9 @@
       <li class="listOne" v-for="i in games">Game {{i.id}} Creation date{{i.created}}
       <p class="mt-2">Players:</p>
       <ul>
-          <li v-for="j in i.gamePlayers">{{j.player.username}} <a v-if="j.player.id === player.id" :href="'/web/game.html?gp='+j.id"><button class="ml-3 join-btn">Join Game!</button></a></li>
+          <li v-for="j in i.gamePlayers">{{j.player.username}} <a v-if="j.player.id === player.id" :href="'/web/game.html?gp='+j.id"><button class="ml-3 return-btn">Return to game</button></a>
+          <button v-else-if="j.player.id != player.id && i.gamePlayers.length < 2 && player != 'GUEST'" :data-game="i.id" class="join-btn">Join Game!</button>
+          </li>
       </ul>
       </li>
   </ul>
@@ -60,6 +62,8 @@
                 <span id="msg" class="spanColor"></span>
             </form>
             <input id="btn-logout" type="button" value="Log out">
+            <input id="btn-create" type="button" value="Create Game!">
+            <span class="spanColor"></span>
         </div>
     </div>
 </section>

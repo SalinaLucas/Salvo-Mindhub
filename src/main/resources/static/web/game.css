@@ -1,24 +1,19 @@
 span {
     font-style: italic;
     font-size: 23px;
-    color: white;
-
+    color: black;
 }
 body {
-    background-size: cover;
-    background-image: url("imagenes css/fondo3.jpg");
-
-    background-position: center;
+    background-image: url('imagenes css/fondobody.png');
     background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
 }
-table.table-bordered > thead > tr > th {
-      border: 2px solid white;
-}
-table.table-bordered > tbody > tr > td {
-      border: 2px solid white;
+#columnsSalvo td {
+    width: 20px;
 }
 .heading {
-     color: white;
+     color: black;
 }
 #tdw {
     font-weight: bold;
@@ -30,9 +25,90 @@ table.table-bordered > tbody > tr > td {
     background-color: red;
 }
 #btn-logout {
-     background-color: #FF715B;
-     cursor: pointer;
-     border-radius: 15px;
-     float: right;
+     background-color: #A4FFFC;
+         cursor: pointer;
+         border-radius: 15px;
+
      padding: 5px ;
 }
+#dinamicBtn {
+      background-color: #7FFF65;
+         cursor: pointer;
+         border-radius: 15px;
+
+}
+.ship {
+    margin-left: 60px;
+    margin-top: 15px;
+    margin-bottom: 15px;
+}
+.spanColor {
+    color: red;
+    font-size: 15px;
+}
+#salvoTable {
+    margin-top: 28px;
+    margin-left: 130px;
+    width: 600px;
+
+}
+#submitSalvo {
+     background-color: #FF7E2F;
+     cursor: pointer;
+     border-radius: 15px;
+     padding: 5px ;
+     padding-left: 70px;
+     padding-right: 70px;
+     margin-left: 215px;
+}
+.fire {
+    background-image: url('imagenes css/mira.png');
+    background-repeat: no-repeat;
+    background-size: contain;
+    background-position: center;
+}
+.scope {
+    background-image: url('imagenes css/blackscope.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    z-index:100;
+    min-height: 45px;
+    min-width: 45px;
+}
+
+.scope1 {
+    background-image: url('imagenes css/blackscope.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color: red
+}
+
+.spanMsg {
+    color: red;
+    font-size: 15px;
+}
+.reachFire {
+    background-image: url('imagenes css/fire4.gif');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 35px;
+    width: 45px;
+    z-index: 100;
+}
+.letterX {
+    background-image: url('imagenes css/equis.png');
+    background-size: contain;
+    background-repeat: no-repeat;
+    background-position: center;
+    height: 45px;
+    width: 45px;
+    z-index: 100;
+    opacity: 0.3;
+}
+.cell {
+    cursor: pointer;
+}
+

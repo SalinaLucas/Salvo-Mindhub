@@ -1,5 +1,5 @@
 .background {
-    background-color: #FF715B;
+    background-image: url('imagenes css/fondoboy.png')
     height: 100px;
     width: 100%;
  }
@@ -21,17 +21,17 @@
     margin: 15px 0;
  }
  #btn {
-    background-color: #FF715B;
+    background-color: #A4FFFC;
     cursor: pointer;
     border-radius: 15px;
  }
  #btn-logout {
-     background-color: #FF715B;
+     background-color: #A4FFFC;
      cursor: pointer;
      border-radius: 15px;
 }
 #btn-sign-up {
-    background-color: #FCCD2E;
+    background-color: #7FFF65;
     cursor: pointer;
     border-radius: 15px;
 }
@@ -41,11 +41,26 @@
 .hide {
     display: none;
 }
+.return-btn {
+    background-color: #040300;
+    cursor: pointer;
+    border-radius: 15px;
+    color: white;
+}
+ #btn-create {
+     background-color: #A4FFFC;
+     cursor: pointer;
+     border-radius: 15px;
+}
 .join-btn {
     background-color: #040300;
     cursor: pointer;
     border-radius: 15px;
     color: white;
 }
-
-
+body {
+    background-image: url('imagenes css/fondobody.png');
+    background-repeat: no-repeat;
+    background-attachment: fixed;
+    background-size: cover;
+}
