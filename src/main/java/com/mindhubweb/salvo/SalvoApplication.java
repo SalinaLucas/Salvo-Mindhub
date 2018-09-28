@@ -1,5 +1,6 @@
 package com.mindhubweb.salvo;
 
+//Importes necesarios
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
@@ -29,6 +30,7 @@ import java.util.HashSet;
 import java.util.Set;
 
 
+//Corredor de la aplicación
 @SpringBootApplication
 public class SalvoApplication {
 
@@ -37,6 +39,7 @@ public class SalvoApplication {
 		SpringApplication.run(SalvoApplication.class, args);
 	}
 
+//Bean funciona para colocar algo que luego va a utilizarse y crear los elementos
 	@Bean
 	public CommandLineRunner initData(PlayerRepository playerRepository, GameRepository gameRepository,
 									  GamePlayerRepository gamePlayerRepository, ShipRepository shipRepository, SalvoRepository salvoRepository, ScoreRepository scoreRepository) {
@@ -202,10 +205,12 @@ public class SalvoApplication {
 	}
 }
 
+//Seguridad web de la aplicación
 @EnableWebSecurity
 @Configuration
 class WebSecurityAuthConfiguration extends GlobalAuthenticationConfigurerAdapter {
 
+//Llamada al repositorio
 	@Autowired
 	PlayerRepository playerRepository;
 
@@ -214,18 +219,13 @@ class WebSecurityAuthConfiguration extends GlobalAuthenticationConfigurerAdapter
 		return new BCryptPasswordEncoder();
 	}
 
+//Override sobrescribe método de una clase
 	@Override
 	public void init(AuthenticationManagerBuilder auth) throws Exception {
 		auth.userDetailsService(email -> {
 			Player player = playerRepository.findByUserName(email);
 			if (player != null) {
-				/*if (player.getUserName().equals("t.almeida@ctu.gov")) {
-					return new User(player.getUserName(), passwordEncoder().encode(player.getPassword()),
-							AuthorityUtils.createAuthorityList("ADMIN"));
-				} else {
-					return new User(player.getUserName(), passwordEncoder().encode(player.getPassword()),
-							AuthorityUtils.createAuthorityList("USER"));
-				}*/
+
 				return new User(player.getUserName(), passwordEncoder().encode(player.getPassword()),
 						AuthorityUtils.createAuthorityList("USER"));
 				} else {
@@ -235,6 +235,7 @@ class WebSecurityAuthConfiguration extends GlobalAuthenticationConfigurerAdapter
 	}
 }
 
+//Configuración de permisos
 @Configuration
 @EnableWebSecurity
 class WebSecurityConfig extends WebSecurityConfigurerAdapter {

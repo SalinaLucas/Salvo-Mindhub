@@ -1,5 +1,6 @@
 package com.mindhubweb.salvo;
 
+//Clase con los estados de autenticación
 public final class Messages {
     public static final String KEY_ERROR = "error";
     public static final String KEY_STATUS = "ok";

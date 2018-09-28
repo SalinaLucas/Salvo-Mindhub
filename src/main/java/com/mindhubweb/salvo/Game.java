@@ -2,7 +2,7 @@ package com.mindhubweb.salvo;
 
 
 
-
+//Importes necesarios
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
@@ -15,8 +15,10 @@ import javax.persistence.CascadeType;
 import static java.util.stream.Collectors.toList;
 
 
+//Entidad
 @Entity
 public class Game {
+//Propiedades y relaciones
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
@@ -28,23 +30,23 @@ public class Game {
     @OneToMany(mappedBy="game", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
     Set<Score> scores = new HashSet<>();
 
-
+//Constructor nulo
     public Game() { }
 
 
+//Constructor del juego
+    public Game(LocalDateTime localDateTime) {
+        this.creationDate = localDateTime;
+
+    }
+
+//Getters y setters
     public long getId() {
         return id;
     }
 
     public void setId(long id) {
         this.id = id;
-    }
-
-
-
-    public Game(LocalDateTime localDateTime) {
-        this.creationDate = localDateTime;
-
     }
 
     public LocalDateTime getCreationDate() {
@@ -60,6 +62,7 @@ public class Game {
     }
 
 
+//Adds necesarios
     public void addGamePlayer(GamePlayer gamePlayer) {
         gamePlayer.setGame(this);
         gamePlayers.add(gamePlayer);

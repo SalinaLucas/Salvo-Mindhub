@@ -2,7 +2,7 @@ package com.mindhubweb.salvo;
 
 
 
-
+//Importes necesarios
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 import javax.persistence.*;
@@ -12,9 +12,10 @@ import java.util.LinkedHashMap;
 import java.util.Map;
 import java.util.Set;
 
-
+//Entidad
 @Entity
 public class GamePlayer {
+//Porpiedades y relaciones
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -35,10 +36,11 @@ public class GamePlayer {
     @OneToMany(mappedBy="gamePlayer", fetch=FetchType.EAGER, cascade = CascadeType.ALL)
     Set<Salvo> salvoes = new HashSet<>();
 
-
+//Constructor nulo
     public GamePlayer() {
     }
 
+//Constructor de GamePlayer con parámetros necesarios
     public GamePlayer(Game game, Player player, Set<Ship> ships, Set<Salvo> salvoes) /*Player player2)*/ {
         this.game = game;
         this.player = player;
@@ -58,6 +60,7 @@ public class GamePlayer {
         this.addShips(ships);
     }
 
+//Getters y setters
     public long getId() {
         return id;
     }
@@ -79,6 +82,7 @@ public class GamePlayer {
         this.creationDate = creationDate;
     }
 
+//Adds necesarios
     public void addShip(Ship ship) {
         ship.setGamePlayer(this);
         ships.add(ship);
@@ -97,7 +101,7 @@ public class GamePlayer {
     }
 
     public void addSalvoes(Set<Salvo> salvoes){
-        salvoes.stream().forEach(salvo -> {
+            salvoes.stream().forEach(salvo -> {
             salvo.setGamePlayer(this);
             this.salvoes.add(salvo);
         });
@@ -140,16 +144,6 @@ public class GamePlayer {
     public Score getScore() {
         return this.player.getScore(this.game);
     }
-
-
-    /* public Player getPlayer2() {
-        return player2;
-    }
-
-    public void setPlayer2(Player player2) {
-        this.player2 = player2;
-    }*/
-
 
 }
 

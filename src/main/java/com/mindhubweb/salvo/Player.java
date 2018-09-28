@@ -1,6 +1,6 @@
 package com.mindhubweb.salvo;
 
-
+//Importes necesarios
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
 
@@ -15,9 +15,10 @@ import javax.persistence.CascadeType;
 
 import static java.util.stream.Collectors.toList;
 
-
+//Entidad
 @Entity
 public class Player {
+//Propiedades y relaciones
     @Id
     @GeneratedValue(strategy=GenerationType.IDENTITY)
     private long id;
@@ -32,12 +33,15 @@ public class Player {
     Set<Score> scores = new HashSet<>();
 
     @JsonIgnore
+//Lista de juegos
     public List<Game> getGames() {
         return gamePlayers.stream().map(sub -> sub.getGame()).collect(toList());
     }
 
+//Constructor nulo
     public Player() { }
 
+//Getters y setters
     public long getId() {
         return id;
     }
@@ -46,6 +50,7 @@ public class Player {
         this.id = id;
     }
 
+//Constructor de jugador
     public Player(String email, String password) {
         this.userName = email;
         this.password = password;
@@ -70,6 +75,7 @@ public class Player {
         this.password = password;
     }
 
+//Adds necesarios
     public void addGamePlayer(GamePlayer gamePlayer) {
         gamePlayer.setPlayer(this);
         gamePlayers.add(gamePlayer);

@@ -1,6 +1,6 @@
 package com.mindhubweb.salvo;
 
-
+//Importes necesarios
 import javafx.scene.control.Cell;
 
 import javax.persistence.*;
@@ -9,8 +9,10 @@ import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
+//Entidad
 @Entity
 public class Ship {
+//Propiedades y relaciones
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -24,13 +26,16 @@ public class Ship {
     @JoinColumn(name = "gamePlayer_id")
     private GamePlayer gamePlayer;
 
+//Constructor nulo
     public Ship() {}
 
+//Constructor de barcos
     public Ship(String shipType, List<String> cells) {
         this.shipType = shipType;
         this.cells = cells;
     }
 
+//Getters y setters
     public long getId() {
         return id;
     }

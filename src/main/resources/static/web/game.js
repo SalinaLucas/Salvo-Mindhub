@@ -1,12 +1,13 @@
-//Variable y función madre que trae la data
+//Variables y función madre que trae la data
 var start;
 var salvoPlayerId;
+var myGameState;
 
 function getData (id) {
 $.get("/api/game_view/"+id).done(function(data){
         start = data;
-        //head();
         createVersus(id);
+        gameState();
         createFireTable();
         createFire();
         if (data.ships.length <= 0) {
@@ -25,13 +26,27 @@ function getId (string) {
     return  newString;
 }
 
-getData(getId(url)) ;
+$(function() {
+   refresh();
+   getData(getId(url)) ;
+});
 
-//Función para  crear título dinámico
-/*function head () {
-    $("#tittle").append("<h1 class='text-center text-white'>Oceanic War</h1>");
-}*/
 
+
+//Función para recargar la página ante cambios en el estado de juego
+var timerId;
+
+
+function refresh() {
+  timerId = setInterval(function() { location.reload(); }, 10000);
+}
+
+function stopRefresh() {
+  clearInterval(timerId);
+}
+
+
+//Función para crear la tabla de tiros
 function createFireTable () {
 
         for (var i=0; i<11; i++){
@@ -50,7 +65,9 @@ function createFireTable () {
             })
 
             }
+
 }
+
 
 //Celdas clickeables
 $("#salvoTable").on('click', '.cell', function() {
@@ -101,16 +118,41 @@ function createFire() {
                for (var j in start.salvoes[i].locations) {
                       $("#salvoTable ." + start.salvoes[i].locations[j] + "").addClass("scope");
                }
+               for (var o in start.salvoes[i].hits) {
+                      $("#salvoTable ." + start.salvoes[i].hits[o] + "").addClass("reachFire");
+               }
+               for (var p in start.salvoes[i].sinks) {
+                    if (start.salvoes[i].sinks[p] == 'patrol') {
+                        $('#shipCementery').html("<img src='imagenes css/PatrolBoatHundido.gif'>");
+                        $('.safePatrol').addClass('hide');
+                    }
+                    if (start.salvoes[i].sinks[p] == 'submarine') {
+                        $('#shipCementery2').html("<img src='imagenes css/submarinoHundido2.gif'>");
+                        $('.safeSubmarine').addClass('hide');
+                    }
+                    if (start.salvoes[i].sinks[p] == 'battleship') {
+                        $('#shipCementery3').html("<img src='imagenes css/BattleshipHundido.gif'>");
+                        $('.safeBattleship').addClass('hide');
+                    }
+                    if (start.salvoes[i].sinks[p] == 'destroyer') {
+                        $('#shipCementery4').html("<img src='imagenes css/AcorazadoHundido2.gif'>");
+                        $('.safeDestroyer').addClass('hide');
+                    }
+                    if (start.salvoes[i].sinks[p] == 'carrier') {
+                        $('#shipCementery5').html("<img src='imagenes css/CarrierHundido.gif'>");
+                        $('.safeCarrier').addClass('hide');
+                    }
+               }
            } else {
                 for (var k in start.salvoes[i].locations) {
-                    var hitted = false;
+                    var hit = false;
                     var x = parseInt(start.salvoes[i].locations[k].slice(1))-1;
                     var y = getYPosition(start.salvoes[i].locations[k].slice(0, 1));
                     for (var j in start.ships) {
                        if(start.ships[j].locations.indexOf(start.salvoes[i].locations[k]) != -1)
-                        hitted = true;
+                        hit = true;
                     }
-                    if(hitted)
+                    if(hit)
                         $("#grid").append('<div style="position:absolute; top:'+y*45+'px; left:'+x*45+'px" class="reachFire" ></div>');
                     else
                         $("#grid").append('<div style="position:absolute; top:'+y*45+'px; left:'+x*45+'px" class="letterX" ></div>');
@@ -120,18 +162,83 @@ function createFire() {
 
 }
 
-//Función que agarra y arma un objeto para rellenar tabla de tiros
-function getShoot() {
-    var salvo = {
-            cells: []
-    }
+//Estados de juego
+function gameState() {
 
-    $("#salvoTable .scope1").each(function(){
-        var getIdCell = $(this).attr('id');
-        salvo.cells.push(getIdCell);
-    })
-    return salvo;
+            if (myGameState == 'WAIT_OPPONENT_JOIN') {
+                $('#dinamicBtn').addClass('hide');
+                $('#submitSalvo').addClass('hide');
+                $('#gameStateMessage').html('Waiting for an opponent').addClass('gameMessage');
+                $('#rules').html('Shots depend on your number of ships').addClass('rules');
+            }
+            else {
+                if (myGameState == 'PLACE_SHIPS') {
+                    $('#gameStateMessage').html('Place your ships!').addClass('gameMessage');
+                    $('#dinamicBtn').removeClass('hide');
+                    $('#rules').html('Shots depend on your number of ships').addClass('rules');
+                    stopRefresh();
+                }
+                if (myGameState == 'WAIT_OPPONENT_SHIPS') {
+                    $('#gameStateMessage').html('Wait for the opponent!').addClass('gameMessage');
+                    $('#submitSalvo').addClass('hide');
+                    $('#dinamicBtn').addClass('hide');
+                }
+                if (myGameState == 'PLACE_SALVOS') {
+                    $('#gameStateMessage').html('Your turn, fire!').addClass('gameMessage');
+                    $('#submitSalvo').removeClass('hide');
+                    $('#dinamicBtn').addClass('hide');
+                    $('#rules').html('Shots depend on your number of ships').addClass('rules');
+                    stopRefresh();
+                }
+                if (myGameState == 'WAIT_OPPONENT_SALVOS') {
+                    $('#gameStateMessage').html('Watch out, enemy shooting!').addClass('gameMessage');
+                    $('#submitSalvo').addClass('hide');
+                    $('#dinamicBtn').addClass('hide');
+                    $('#rules').html('Shots depend on your number of ships').addClass('rules');
+                }
+                if (myGameState == 'WIN') {
+
+                    $('#submitSalvo').addClass('hide');
+                    $('#dinamicBtn').addClass('hide');
+                    $('#gameStateMessage').html('Congratulations, you win!').addClass('gameMessage');
+                    $('#rules').html('Shots depend on your number of ships').addClass('rules');
+                    setTimeout(function() { window.location.replace('/web/games.html')}, 10000);
+                    stopRefresh();
+                }
+                if (myGameState == 'LOSE') {
+
+                    $('#submitSalvo').addClass('hide');
+                    $('#dinamicBtn').addClass('hide');
+                    $('#gameStateMessage').html('Bad luck, you lost').addClass('gameMessage');
+                    $('#rules').html('Shots depend on your number of ships').addClass('rules');
+                    setTimeout(function() { window.location.replace('/web/games.html')}, 10000);
+                    stopRefresh();
+                }
+                if (myGameState == 'DRAW') {
+
+                    $('#submitSalvo').addClass('hide');
+                    $('#dinamicBtn').addClass('hide');
+                    $('#gameStateMessage').html('It´s a tie!').addClass('gameMessage');
+                    $('#rules').html('Shots depend on your number of ships').addClass('rules');
+                    setTimeout(function() { window.location.replace('/web/games.html')}, 10000);
+                    stopRefresh();
+                }
+            }
 }
+
+
+//Función que agarra y arma un objeto para rellenar tabla de tiros
+ function getShoot() {
+     var salvo = {
+             cells: []
+     }
+
+     $("#salvoTable .scope1").each(function(){
+         var getIdCell = $(this).attr('id');
+         salvo.cells.push(getIdCell);
+     })
+     return salvo;
+ }
 
 
 
@@ -142,6 +249,7 @@ function createVersus (px) {
 
                 $("#pOne").html(start.gamePlayers[i].player.username + "(you) ");
                 salvoPlayerId = start.gamePlayers[i].player.id;
+                myGameState = start.gamePlayers[i].gameState;
             }
             else {
                 $("#pTwo").html("vs " + start.gamePlayers[i].player.username);
@@ -158,6 +266,10 @@ $("#btn-logout").click(function(){
   $.post("/api/logout")
         .done(function(data) {
            window.location.replace('/web/games.html');
+        })
+        .fail(function () {
+          $("#failLogOut").html("The server failed, wait a moment").addClass("spanColor");
+          console.log("fail");
         })
 })
 
@@ -267,10 +379,6 @@ return charY;
 
 //Place ships
 function setListener(grid) {
-/*$('.grid-stack-item').dblclick(function(){
-    var w = parseInt($(this).attr('data-gs-width'))
-    var h = parseInt($(this).attr('data-gs-height'))
-        grid.resize($(this), h, w);*/
 
     $(".grid-stack-item").dblclick(function() {
        var shipContainer = $(this);
@@ -306,37 +414,11 @@ function setListener(grid) {
            alert("Caution with Grid boundaries and Ship's overlapping")
        }
 
-
-       /* if ($(this).children().attr('class') === 'horizontal') {
-               $(this).children().attr('class', 'vertical').attr('src','imagenes css/ship3subV.icon.png');
-           } else if ($(this).children().attr('class') === ('vertical')) {
-               $(this).children().attr('class', 'horizontal').attr('src','imagenes css/ship3sub.icon.png');
-           }
-
-        if ($(this).children().attr('class') === 'horizontal') {
-               $(this).children().attr('class', 'vertical').attr('src','imagenes css/ship3V.icon.png');
-           } else if ($(this).children().attr('class') === ('vertical')) {
-               $(this).children().attr('class', 'horizontal').attr('src','imagenes css/ship3.icon.png');
-           }
-
-       if ($(this).children().attr('class') === 'horizontal') {
-               $(this).children().attr('class', 'vertical').attr('src','imagenes css/ship5V.icon.png');
-           }  else if ($(this).children().attr('class') === ('vertical')) {
-               $(this).children().attr('class', 'horizontal').attr('src','imagenes css/ship5.icon.png');
-           }
-
-       if ($(this).children().attr('class') === 'horizontal') {
-               $(this).children().attr('class', 'vertical').attr('src','imagenes css/ship4V.icon.png');
-           }  else if ($(this).children().attr('class') === ('vertical')) {
-               $(this).children().attr('class', 'horizontal').attr('src','imagenes css/ship4.icon.png');
-           }*/
-
-
-
-
-   })
+    })
 }
 
+
+//Función para corregir el bug de la tabla del framework
 function willItFit(x, y, width, height){
    if ((x + width) > 10){
        return false
@@ -347,6 +429,8 @@ function willItFit(x, y, width, height){
    return true;
 }
 
+
+//Función para colocar barcos cuando empieza un juego nuevo
 function placeNewShips() {
    var options = {
        //grilla de 10 x 10
@@ -387,6 +471,8 @@ function placeNewShips() {
    setListener(grid);
 }
 
+
+//Función para colocar barcos
 function placeShips () {
     var options = {
            //grilla de 10 x 10
@@ -416,7 +502,7 @@ function placeShips () {
        start.ships.forEach(function (ship) {
 
             var firstYPosition = getYPosition(ship.locations[0].charAt(0));
-            var firstXPosition = (ship.locations[0].charAt(1))-1;
+            var firstXPosition = (ship.locations[0].slice(1))-1;
             var isHorizontal = (ship.locations[0].charAt(0) == ship.locations[1].charAt(0));
             var length = ship.locations.length;
 
@@ -479,7 +565,7 @@ function placeShips () {
 
 }
 
-
+//Función para obtener el cambio de letra a número
 function getYPosition(y) {
 
             var charY;
@@ -519,4 +605,4 @@ function getYPosition(y) {
             return charY;
 
 
-       }
+}

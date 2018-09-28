@@ -17,57 +17,54 @@
     <div class="row">
         <header id="tittle" class="col">
             <h1 class="text-center text-dark">Oceanic War</h1>
-
         </header>
     </div>
 <div id="against" class="row">
     <div class="col text-center pt-5">
     <span id="pOne"></span>
     <span id="pTwo"></span>
-
     </div>
 </div>
     <div class="row">
         <span class="col-2"></span>
         <input type="button" id="dinamicBtn" value="Place Ships!" class="col-2">
-        <span id="errorMsg" class="col-4"></span>
-        <input id="btn-logout"  type="button" value="Log out" class="col-2">
-        <span class="col-2"></span>
-    </div>
-    <!--<div>
-    <div>
-        <div>
-        <img src="imagenes css/ship4.icon.png" alt="ship4" class="ship destroyer" draggable="true" ondragstart="drag(event)" id="drag1" width="88" height="31">
+        <span id="errorMsg" class="col-2"></span>
 
-            <img src="imagenes css/ship3.icon.png" alt="ship3" class="ship submarine" draggable="true" ondragstart="drag(event)" id="drag2" width="88" height="31">
+        <input id="btn-logout"  type="button" value="Log out" class="col-2">
+        <span id="#failLogOut" class="col-2"></span>
+    </div>
+    <div class="row">
+        <span class="col-2"></span>
+        <span id="gameStateMessage" class="col-2"></span>
+        <span class="col-2"></span>
+        <span id="rules" class="col-2"></span>
+    </div>
+    <div class="row">
+        <div class="col-6"></div>
+        <div class="mt-5 col-6" id="divShips">
+            <img src="imagenes css/PatrolBoatMini.gif" alt="submarine" class="safePatrol">
+            <img src="imagenes css/SubmarinoMini.gif" alt="submarine" class="safeSubmarine">
+            <img src="imagenes css/BattleShipMini.gif" alt="battleship" class="safeBattleship">
+            <img src="imagenes css/AcorazadoMini.gif" alt="destroyer" class="safeDestroyer">
+            <img src="imagenes css/CarrierMini.gif" alt="carrier" class="safeCarrier">
+            <div id="shipCementery" class="line"></div>
+            <div id="shipCementery2" class="line"></div>
+            <div id="shipCementery3" class="line"></div>
+            <div id="shipCementery4" class="line"></div>
+            <div id="shipCementery5" class="line"></div>
+            <!--<img src="imagenes css/PatrolBoatHundido.gif" alt="patrol" class="patrolDown">
+            <img src="imagenes css/submarinoHundido2.gif" alt="submarine" class="submarineDown">
+            <img src="imagenes css/AcorazadoHundido2.gif" alt="destroyer" class="destroyerDown">
+            <img src="imagenes css/BattleshipHundido.gif" alt="battleship" class="battleshipDown">
+            <img src="imagenes css/CarrierHundido.gif" alt="carrier" class="carrierDown">-->
         </div>
     </div>
-    <div>
-        <div>
-        <img src="imagenes css/ship5.icon.png" alt="ship5" class="ship ml-3 carrier" draggable="true" ondragstart="drag(event)" id="drag3" width="88" height="31">
-        </div>
-    </div>
-        <div>
-            <img src="imagenes css/ship3sub.icon.png" alt="ship3" class="ship ml-4 battleship" draggable="true" ondragstart="drag(event)" id="drag4" width="88" height="31">
-            <img src="imagenes css/ship2.icon.png" alt="ship2" class="ship patrolBoat" draggable="true" ondragstart="drag(event)" id="drag5" width="88" height="31">
-        </div>
-    </div>-->
-<div class="row">
-    <!--<div id="table" class="col">
-        <table class="table table-bordered">
-        <thead>
-        <tr id="row">
-        </tr>
-        </thead>
-        <tbody id="columns" ondrop="drop(event)" ondragover="allowDrop(event)">
-        </tbody>
-    </table>
-    </div>-->
+    <div class="row">
     <div class="grid-ships ml-5">
         <div id="grid" class="grid-stack grid-stack-10">
         </div>
     </div>
-    <div id="salvoTable">
+        <div id="salvoTable">
         <table id="fireTable" class="table table-borderless border border-light fire">
             <thead>
             <tr id="rowSalvo">

@@ -26,16 +26,15 @@ body {
 }
 #btn-logout {
      background-color: #A4FFFC;
-         cursor: pointer;
-         border-radius: 15px;
-
+     cursor: pointer;
+     border-radius: 15px;
      padding: 5px ;
+     margin-left: 240px;
 }
 #dinamicBtn {
-      background-color: #7FFF65;
-         cursor: pointer;
-         border-radius: 15px;
-
+     background-color: #7FFF65;
+     cursor: pointer;
+     border-radius: 15px;
 }
 .ship {
     margin-left: 60px;
@@ -50,7 +49,6 @@ body {
     margin-top: 28px;
     margin-left: 130px;
     width: 600px;
-
 }
 #submitSalvo {
      background-color: #FF7E2F;
@@ -111,4 +109,19 @@ body {
 .cell {
     cursor: pointer;
 }
+.hide {
+    display: none;
+}
+.line {
+    display: inline-block;
+}
+.gameMessage {
+    font-size: 20px;
+    color: red;
+    margin-right: 130px;
+}
+.rules {
+    font-size: 18px;
+    margin-left: 120px;
 
+}

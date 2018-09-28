@@ -1,5 +1,6 @@
 package com.mindhubweb.salvo;
 
+//Importes necesarios
 import com.fasterxml.jackson.annotation.JsonIgnore;
 import javax.persistence.*;
 import java.time.LocalDateTime;
@@ -9,8 +10,10 @@ import java.util.Map;
 import java.util.Set;
 
 
+//Entidad
 @Entity
 public class Score {
+//Propiedades y relaciones
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private long id;
@@ -27,9 +30,11 @@ public class Score {
     private Game game;
 
 
+//Constructor nulo
     public Score() {
     }
 
+//Constructor de puntos
     public Score(Game game, Player player, LocalDateTime localDateTime, float points)  {
         this.game = game;
         game.addScore(this);
@@ -39,6 +44,7 @@ public class Score {
         this.points = points;
     }
 
+//Getters y setters
     public long getId() {
         return id;
     }
